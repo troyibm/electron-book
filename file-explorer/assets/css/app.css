@@ -1,4 +1,5 @@
 @import url("./Base/base.css");
+@import url("./Base/definitions.css");
 @import url("./Component/l-app.css");
 @import url("./Component/l-main.css");
 @import url("./Component/titlebar.css");
