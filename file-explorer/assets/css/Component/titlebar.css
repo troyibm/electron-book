@@ -1,7 +1,10 @@
 .titlebar {
     background-color: var(--titlebar-bg-color);
     color: var(--titlebar-fg-color);
-    padding: 0.8em 0.6em;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    padding-right: 0em;
+    padding-left: 0.6em;
     position: sticky;
     top: 0;
     display: flex;
