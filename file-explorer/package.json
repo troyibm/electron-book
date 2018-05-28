@@ -7,6 +7,17 @@
   "devDependencies": {
     "nw": "^0.30.2-sdk"
   },
+  "chromium-args": "--mixed-context",
+  "window": {
+    "show": true,
+    "frame": true,
+    "width": 1000,
+    "height": 600,
+    "min_width": 800,
+    "min_height": 400,
+    "position": "center",
+    "resizable": true
+  },
   "scripts": {
     "start": "nw .",
     "debug": "nw . --remote-debugging-port=9222",
