@@ -9,13 +9,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.1.0/boot.js"></script>
 </head>
 <body>
-    <div id="sandbox" style="display: none"></div>
+    <div id="sandbox" style="display: none">
+
+    </div>
     <script>
         // Catch exception and report them to the console
         process.on("uncaughtException", (err) => console.error(err));
         const path = require("path"),
                 jetpack = require("fs-jetpack"),
-                matchingSpecs = jetpack.find("../../js/Service", {
+                matchingSpecs = jetpack.find("../../js", {
                     matching: [
                         "*.spec.js",
                         "!node_modules/**"
