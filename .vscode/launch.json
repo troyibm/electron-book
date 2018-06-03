@@ -23,7 +23,7 @@
             "runtimeExecutable": "npm",
             "runtimeArgs": [
                 "run",
-                "test",
+                "test-debug",
             ],
             "port": 9222,
             "cwd": "${workspaceFolder}/file-explorer"
