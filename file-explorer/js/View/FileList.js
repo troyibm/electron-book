@@ -2,18 +2,25 @@
 const filesize = require("filesize");
 
 class FileListView {
-    constructor(boundingEl, dirService) {
+    constructor(boundingEl, dirService, i18nService) {
         this.dir = dirService;
         this.el = boundingEl;
+        this.i18n = i18nService;
         // subscribe to dir service updates
         dirService.on("update", () => this.update(
             dirService.getFileList()
         ));
+
+        // subscribe to i18nService updates
+        i18nService.on("update", () => this.update(
+            dirService.getFileList()
+        ));
     }
 
-    static formatTime(timeString) {
-        const date = new Date(Date.parse(timeString));
-        return date.toDateString();
+    static formatTime(timeString, locale) {
+        const date = new Date(Date.parse(timeString)),
+            options = { year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric", second:"numeric", hour12: false };
+        return date.toLocaleString(locale, options);
     }
 
     update(collection) {
@@ -27,7 +34,7 @@ class FileListView {
                 `<li class="file-list__li" data-file="${fInfo.fileName}">
                     <span class="file-list__li__name">${fInfo.fileName}</span>
                     <span class="file-list__li__size">${filesize(fInfo.stats.size)}</span>
-                    <span class="file-list__li__time">${FileListView.formatTime(fInfo.stats.mtime)}</span>
+                    <span class="file-list__li__time">${FileListView.formatTime(fInfo.stats.mtime, this.i18n.locale)}</span>
                 </li>`);
             this.bindUi();
         });
