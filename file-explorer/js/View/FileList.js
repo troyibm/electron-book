@@ -25,9 +25,9 @@ class FileListView {
 
     update(collection) {
         this.el.innerHTML = `<li class="file-list__li file-list__head">
-            <span class="file-list__li__name">Name</span>
-            <span class="file-list__li__size">Size</span>
-            <span class="file-list__li__time">Modified</span>
+            <span class="file-list__li__name">${this.i18n.translate("NAME", "Name")}</span>
+            <span class="file-list__li__size">${this.i18n.translate("SIZE", "Size")}</span>
+            <span class="file-list__li__time">${this.i18n.translate("MODIFIED", "Modified")}</span>
             </li>`;
         collection.forEach((fInfo) => {
             this.el.insertAdjacentHTML("beforeend", 

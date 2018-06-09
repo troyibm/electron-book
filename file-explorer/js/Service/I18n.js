@@ -2,9 +2,10 @@
 const EventEmitter = require("events");
 
 class I18nService extends EventEmitter {
-    constructor() {
+    constructor(dictionary) {
         super();
         this._locale = "en-US";
+        this.dictionary = dictionary;
     }
 
     get locale() {
@@ -18,6 +19,11 @@ class I18nService extends EventEmitter {
 
     notify() {
         this.emit("update");
+    }
+
+    translate(token, defaultValue) {
+        const dictionary = this.dictionary[this._locale];
+        return dictionary[token] || defaultValue;
     }
 }
 
