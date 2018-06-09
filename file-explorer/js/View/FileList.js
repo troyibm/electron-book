@@ -24,7 +24,7 @@ class FileListView {
             </li>`;
         collection.forEach((fInfo) => {
             this.el.insertAdjacentHTML("beforeend", 
-                `<li class="file-list__li data-file="${fInfo.fileName}">
+                `<li class="file-list__li" data-file="${fInfo.fileName}">
                     <span class="file-list__li__name">${fInfo.fileName}</span>
                     <span class="file-list__li__size">${filesize(fInfo.stats.size)}</span>
                     <span class="file-list__li__time">${FileListView.formatTime(fInfo.stats.mtime)}</span>
