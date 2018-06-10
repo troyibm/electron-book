@@ -14,6 +14,12 @@ const { TitleBarPathView } = require("./js/View/TitleBarPath");
 dirService = new DirService();
 
 new DirListView(document.querySelector("[data-bind=dirList]"), dirService);
-new FileListView(document.querySelector("[data-bind=fileList]"), dirService, i18nService);
 new TitleBarPathView(document.querySelector("[data-bind=path]"), dirService);
 dirService.notify();
+
+const { FileService } = require("./js/Service/File"),
+    { ContextMenuView } = require("./js/View/ContextMenu"),
+    fileService = new FileService(dirService);
+
+new FileListView(document.querySelector("[data-bind=fileList]"), dirService, i18nService, fileService);
+new ContextMenuView(fileService, i18nService);
