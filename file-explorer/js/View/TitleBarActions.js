@@ -10,6 +10,11 @@ class TitleBarActionsView {
         this.maximizeE1 = boundingE1.querySelector("[data-bind=maximize]");
         this.unmaximizeE1 = boundingE1.querySelector("[data-bind=unmaximize]");
         this.bindUi();
+
+        // subscribe to window events
+        appWindow.on("maximize", () => this.toggleButtons(false));
+        appWindow.on("minimize", () => this.toggleButtons(false));
+        appWindow.on("restore", () => this.toggleButtons(true));
     }
 
     translate() {
@@ -26,26 +31,30 @@ class TitleBarActionsView {
         this.unmaximizeE1.addEventListener("click", this.onUnmaximize.bind(this), false);
     }
 
+    toggleButtons(reset) {
+        this.maximizeE1.classList.toggle("is-hidden", !reset);
+        this.unmaximizeE1.classList.toggle("is-hidden", reset);
+        this.minimizeE1.classList.toggle("is-hidden", !reset);
+    }
+
+    onRestore(e) {
+        e.preventDefault();
+        appWindow.restore();
+    }
+
     onMinimize(e) {
         e.preventDefault();
         appWindow.minimize();
     }
 
-    toggleMaximize() {
-        this.maximizeE1.classList.toggle("is-hidden");
-        this.unmaximizeE1.classList.toggle("is-hidden");
-    }
-
     onMaximize(e) {
         e.preventDefault();
         appWindow.maximize();
-        this.toggleMaximize();
     }
 
     onUnmaximize(e) {
         e.preventDefault();
         appWindow.unmaximize();
-        this.toggleMaximize();
     }
 
     onClose(e) {
