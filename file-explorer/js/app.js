@@ -23,3 +23,6 @@ const { FileService } = require("./js/Service/File"),
 
 new FileListView(document.querySelector("[data-bind=fileList]"), dirService, i18nService, fileService);
 new ContextMenuView(fileService, i18nService);
+
+const { TrayView } = require("./js/View/Tray");
+new TrayView("");
