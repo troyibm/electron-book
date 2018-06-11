@@ -28,6 +28,14 @@ class FileService {
 
     copy(file) {
         this.copiedFile = this.dir.getFile(file);
+        const ext = path.parse(this.copiedFile).ext.substr(1);
+        switch(ext) {
+            case "jpg":
+            case "jpeg":
+                return this.copyImage(this.copiedFile, "jpeg");
+            case "png":
+                return this.copyImage(this.copyImage, "png");
+        }
     }
 
     open(file) {
@@ -36,6 +44,35 @@ class FileService {
 
     showInFolder(file) {
         nw.Shell.showItemInFolder(this.dir.getFile(file));
+    }
+
+    copyImage(file, type) {
+        const clip = nw.Clipboard.get(),
+            // load file content as Base64
+            data = fs.readFileSync(file).toString("base64"),
+            html = '<img src="file:///${encodeURI(data.replace(/^//, "") )}">';
+
+            // write both options (raw image and HTML) to the clipboard
+            clip.set([
+                {type, data: data, raw: true},
+                {type: "html", data: html}
+            ]);
+    }
+
+    hasImageInClipboard() {
+        const clip = nw.Clipboard.get();
+        return clip.readAvailableTypes().indexOf("png") !== -1;
+    }
+
+    pasteFromClipboard() {
+        const clip = nw.Clipboard.get();
+        if (this.hasImageInClipboard()) {
+            const base64 = clip.get("png", true),
+                binary = Buffer.from(base64, "base64"),
+                filename = Date.now() + "--img.png";
+            fs.writeFileSync(this.dir.getFile(filename), binary);
+            this.dir.notify();
+        }
     }
 };
 
