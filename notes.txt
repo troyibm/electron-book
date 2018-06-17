@@ -1,0 +1,5 @@
+
+Dmitry's blog: http://dsheiko.com/weblog/cross-platform-desktop-application-development-electron-node-nw-js-and-react-is-out#disqus_thread
+
+nwjc segmentation fault github issue:
+https://github.com/nwjs/nw.js/issues/6682
