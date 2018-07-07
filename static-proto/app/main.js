@@ -13,7 +13,10 @@ function createWindow() {
         .catch((err) => console.log("An error occurred: ", err));
 
     mainWindow = new BrowserWindow({
-        width: 1000, height: 600
+        width: 1000, 
+        height: 600, 
+        frame: false,
+        icon: path.join(__dirname, "icon-64x64.png")
     });
 
     mainWindow.loadURL(url.format({
