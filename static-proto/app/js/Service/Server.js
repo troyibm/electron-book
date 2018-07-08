@@ -19,7 +19,7 @@ export default class Server {
 
             conn.on("text", (text) => {
                 const msg = Message.fromString(text), 
-                    method = `on${msg.Event}`;
+                    method = `on${msg.event}`;
                 if (!this[method]) {
                     return;
                 }
