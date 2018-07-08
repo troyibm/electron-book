@@ -64,7 +64,7 @@ export default class Conversation extends React.Component {
                                 <time className="media-body__time">{Conversation.normalizeTime(msg.time, new Date())}</time>
                                 <strong>{msg.userName}:</strong>
                                     {msg.text.split("\n").map((line, inx) => (
-                                        <p key={ionx}>{line}</p>
+                                        <p key={inx}>{line}</p>
                                     ))}
                             </div>
                         </li>
